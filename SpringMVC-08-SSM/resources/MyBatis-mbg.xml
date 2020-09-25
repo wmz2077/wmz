@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--
+        配置内容
+        targetRuntime:生成的版本,
+            标准版:curd          	  MyBatis3Simple
+            豪华版:大量的query    	MyBatis3
+    -->
+
+    <!-- 配置内容 -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!-- 忽略注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm?characterEncoding=UTF-8"
+                        userId="root"
+                        password="123123">
+        </jdbcConnection>
+
+        <!-- 是否使用大类型 -->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--
+            生成pojo位置
+                targetPackage:包位置
+                targetProject:路径
+        -->
+        <javaModelGenerator targetPackage="com.wmz.pojo"
+                            targetProject=".\src">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--
+            targetPackage:映射位置
+            targetProject:路径
+        -->
+        <sqlMapGenerator targetPackage="com.wmz.mapper"
+                         targetProject=".\src">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--
+                    targetPackage:java中接口位置
+                    targetProject:路径
+                -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.wmz.mapper"
+                             targetProject=".\src">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--
+            配置映射
+                tableName:表明
+                domainObjectName:实体类名称
+        -->
+        <table tableName="t_book" domainObjectName="Book"/>
+
+    </context>
+</generatorConfiguration>
